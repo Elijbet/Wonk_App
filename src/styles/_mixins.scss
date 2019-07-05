@@ -1,0 +1,51 @@
+@mixin large-text {
+  font: {
+    size: 1rem;
+  	weight: 400;
+  	weight: bold;
+  }
+  // @include brings in the defined mixin
+	// pass in the font to the mixin that imports fonts
+  @include google-font('Quicksand');
+}
+
+@mixin rounded($radius: 3rem) {
+  border-radius: $radius;
+}
+
+@mixin nav-item {
+	padding: 0;
+  height: 3rem;
+  max-height: 3rem;
+  letter-spacing: 0.5rem;
+  @include rounded;
+  flex: 1; 
+  border: 0;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  color: $text-color;
+  box-shadow: $shadow;
+  background: white;
+  transition: transform $transition-time ease-in-out;
+  @include large-text;
+}
+
+// mixin to import fonts
+
+@mixin google-font($font){
+  // put in correct format with unquote
+  $font: unquote($font);
+  @import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700)
+}
+
+// combine media quieries with mixins
+// mobile first query
+
+@mixin large-to-mid-screens(){
+  @media only screen and (min-width: 600px){
+    @content;
+  }
+}

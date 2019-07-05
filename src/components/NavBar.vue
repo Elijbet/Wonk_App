@@ -1,19 +1,9 @@
 <template>
 	<div>
 		<div class="top-nav">
-			<button class="nav-item-horizontal"> 
+			<button class="nav-item-horizontal" v-for="tab in tabs"> 
 		    <span class="nav-item-text">
-		      Browse
-		    </span>
-		  </button>
-		  <button class="nav-item-horizontal"> 
-		    <span class="nav-item-text">
-		      My Books
-		    </span>
-		  </button>
-		  <button class="nav-item-horizontal"> 
-		    <span class="nav-item-text">
-		      Wonk Out
+		      {{tab}}
 		    </span>
 		  </button>
 		</div>
@@ -28,24 +18,11 @@
 			:class="[sideNavOpen ? 'side-nav-open' : '']"
 			class="side-nav">
       <button 
+      	v-for="tab in tabs"
       	class="nav-item"
       	:class="[sideNavOpen ? 'display' : '']"> 
 		    <span class="nav-item-text">
-		      Browse
-		    </span>
-		  </button>
-		  <button 
-		  	class="nav-item"
-		  	:class="[sideNavOpen ? 'display' : '']"> 
-		    <span class="nav-item-text">
-		      My Books
-		    </span>
-		  </button>
-		  <button 
-		  	class="nav-item"
-		  	:class="[sideNavOpen ? 'display' : '']"> 
-		    <span class="nav-item-text">
-		      Wonk Out
+		      {{tab}}
 		    </span>
 		  </button>
 	  </div>
@@ -56,33 +33,29 @@
 	export default {
 		data() {
 	    return {
+	    	tabs: ['Browse', 'My Books', 'Wonk Out'],
 	      sideNavOpen: false
 	    }
 	  },
 	  methods: {
 	    toggleSideNav() {
 	      return this.sideNavOpen = !this.sideNavOpen
-	    },
+	    }
 	  }
 	}
-	
 </script>
 
 <style lang="scss" scoped>
-@import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700);
-	
+
 .side-nav {
-  // height: 100vh;
   width: 80%;
   padding: 1rem;
   padding-top: 6rem;
   transform: translateX(-100%);
-  display: none; /* display flex in media query */
   flex-direction: column;
   box-sizing: border-box;
-  // background: $nav-background;
-  // box-shadow: $shadow;
   transition: transform 0.1s ease-in-out;
+  display: flex;/* display none in media query */
 }
 
 /* move nav onto screen */
@@ -97,17 +70,17 @@
   height: 4rem;
   width: 4rem;
   border: 0;
-  border-radius: 50%;
+  @include rounded(50%);
   outline: none;
   position: absolute;
   cursor: pointer;
-  display: none; /* display flex in media query */
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background: white;
   box-shadow: $shadow;
   transition: transform $transition-time ease-in-out;
+  display: flex;/* display none in media query */
 }
 
 .side-nav-toggle-line {
@@ -120,56 +93,16 @@
 .top-nav {
   height: 4rem;
   padding: 0 1rem;
-  display: flex; /* display none in media query */
   align-items: center;
-  // background: $nav-background;
-  // box-shadow: $shadow;
+  display: none;/* display flex in media query */
 }
 
 .nav-item-horizontal {
-  padding: 0;
-  height: 3rem;
-  max-height: 3rem;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.5rem;
-  border-radius: 3rem;
-  flex: 1; 
-  border: 0;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  font-family: Quicksand;
-  font-weight: bold;
-  text-transform: uppercase;
-  outline: none;
-  color: $text-color;
-  box-shadow: $shadow;
-  background: white;
-  transition: transform $transition-time ease-in-out;
+  @include nav-item;
 }
 
 .nav-item {
-  padding: 0;
-  height: 3rem;
-  max-height: 3rem;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.5rem;
-  border-radius: 3rem;
-  flex: 1; 
-  border: 0;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  font-family: Quicksand;
-  font-weight: bold;
-  text-transform: uppercase;
-  outline: none;
-  color: $text-color;
-  box-shadow: $shadow;
-  background: white;
-  transition: transform $transition-time ease-in-out;
+  @include nav-item;
   display: none;
 }
 
@@ -230,17 +163,17 @@
   background-color: transparent;
 }
 
-@media all and (max-width: 600px) {
+@include large-to-mid-screens {
   .top-nav {
-    display: none;
+    display: flex; 
   }
   
   .side-nav {
-    display: flex;
+    display: none; 
   }
   
   .side-nav-toggle {
-    display: flex;
+    display: none; 
   }
 }
 </style>

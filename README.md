@@ -13,6 +13,7 @@ ___
 
 - translate codepen react nav into vue; make modification to  designadopt to my purposes;
 - items on nav BROWSE | MY BOOKS | WONK OUT
+- rewrite mobile first
 - factor out nav css into scss
 
 #### BROWSE | HOME section
