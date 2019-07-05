@@ -6,13 +6,17 @@ ___
 
 ## Project Roadmap
 
-#### BROWSE | HOME section
-
 - set up vue.config.js with SCSS globals
 - css normalize
-- translate codepen react nav into vue
+
+#### NAVBAR
+
+- translate codepen react nav into vue; make modification to  designadopt to my purposes;
 - items on nav BROWSE | MY BOOKS | WONK OUT
 - factor out nav css into scss
+
+#### BROWSE | HOME section
+
 - search bar mimic google
 - mimic unfolded history from google search 
 - save last 10 items of history search

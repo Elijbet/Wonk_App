@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <NavBar>
+      <div id="app" /> 
+    </NavBar>
     <img alt="Vue logo" src="./assets/logo.png">
     <HomeBrowse msg="Welcome to Your Vue.js App"/>
   </div>
@@ -7,11 +10,13 @@
 
 <script>
 import HomeBrowse from './components/HomeBrowse.vue'
+import NavBar from './components/NavBar.vue'
 
 export default {
   name: 'app',
   components: {
-    HomeBrowse
+    HomeBrowse,
+    NavBar
   }
 }
 </script>
@@ -23,7 +28,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: $primary;
-  margin-top: 60px;
+
+  background: linear-gradient(
+   to right, 
+   cornflowerblue, 
+   thistle
+  );
+
 }
 </style>
