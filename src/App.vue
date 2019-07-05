@@ -3,20 +3,24 @@
     <NavBar>
       <div id="app" /> 
     </NavBar>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HomeBrowse msg="Welcome to Your Vue.js App"/>
+    <MasonryBookResults/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import HomeBrowse from './components/HomeBrowse.vue'
 import NavBar from './components/NavBar.vue'
+import MasonryBookResults from './components/MasonryBookResults.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'app',
   components: {
     HomeBrowse,
-    NavBar
+    NavBar,
+    MasonryBookResults,
+    Footer
   }
 }
 </script>

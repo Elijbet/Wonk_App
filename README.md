@@ -18,16 +18,18 @@ ___
 
 #### BROWSE | HOME section
 
-- search bar mimic google
-- mimic unfolded history from google search 
-- save last 10 items of history search
-- list recent first
 - masonry layout of book results, no margins
 - flip card animation
 - get books from goodreads api
 - have a default populated vue, see what categories are available from api- 
 - make search work
 
+### SEARCH BAR
+
+- search bar mimic google
+- mimic unfolded history from google search 
+- save last 10 items of history search
+- list recent first
 ___
 
 ## Project setup

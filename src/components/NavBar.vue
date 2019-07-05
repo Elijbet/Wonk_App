@@ -36,11 +36,6 @@
 	    	tabs: ['Browse', 'My Books', 'Wonk Out'],
 	      sideNavOpen: false
 	    }
-	  },
-	  methods: {
-	    toggleSideNav() {
-	      return this.sideNavOpen = !this.sideNavOpen
-	    }
 	  }
 	}
 </script>
