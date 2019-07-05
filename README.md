@@ -18,8 +18,10 @@ ___
 
 #### BROWSE | HOME section
 
-- masonry layout of book results, no margins
-- flip card animation
+- masonry layout of book results, very little margins
+- flip card animation applied to my layout
+- fade in animation applied to backside text
+
 - get books from goodreads api
 - have a default populated vue, see what categories are available from api- 
 - make search work

@@ -11,7 +11,7 @@
             <img 
               src="https://picsum.photos/450/325?image=100" 
               alt="Dummy Image" 
-              class="masonry-content"
+              class="masonry-content fadeIn"
             >
           </div>
           <div :class="[toggleOn ? 'displayOff' : 'displayOn']" class="back">
@@ -301,7 +301,7 @@ body {
   display: none;
 }
 .fadeIn {
-  animation: fadein 1.5s;
+  animation: fadein .5s;
 }
 @keyframes fadein {
     from { opacity: 0; }
@@ -320,7 +320,7 @@ body {
   transform: translate(-50%, -50%);
 }
 .card{
- transition: transform 1s;
+ transition: transform .5s;
  transform-style: preserve-3d;
 }
 .card-wrapper {
