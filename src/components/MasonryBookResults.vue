@@ -44,9 +44,9 @@ import axios from 'axios';
     },
     async created(){
       try {
-        const response = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=1HDYBZa5JVVORNQ13hq5vuPPGG7f1KjU`)
-        const secondResponse = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/2018-01-01/hardcover-fiction.json?api-key=1HDYBZa5JVVORNQ13hq5vuPPGG7f1KjU`)
-        const thirdResponse = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/2017-01-01/hardcover-fiction.json?api-key=1HDYBZa5JVVORNQ13hq5vuPPGG7f1KjU`)
+        const response = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.VUE_APP_NYT_BOOKS_API}`)
+        const secondResponse = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/2018-01-01/hardcover-fiction.json?api-key=${process.env.VUE_APP_NYT_BOOKS_API}`)
+        const thirdResponse = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/2017-01-01/hardcover-fiction.json?api-key=${process.env.VUE_APP_NYT_BOOKS_API}`)
 
         this.books = response.data.results.books
         this.books.push(... secondResponse.data.results.books)
