@@ -49,3 +49,15 @@
     @content;
   }
 }
+
+@mixin large-screen(){
+  @media only screen and (max-width: 1023px) and (min-width: 600px) {
+    @content;  
+  }
+}
+
+@mixin extra-large-screen(){
+  @media only screen and (min-width: 1024px){
+    @content;
+  }
+}

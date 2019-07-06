@@ -116,25 +116,25 @@
    background-color $transition-time ease-in-out;
 }
 
-/* shift buttons to create overlap effect */
-.top-nav .nav-item-horizontal:not(:first-child) {
-  margin-left: -10%;
-}
 
-/* use gradient to create shadow effect */
-.top-nav .nav-item-horizontal:not(:last-child) {
-  background: linear-gradient(
-    to right,
-    white 50%, 
-    transparent
-  );
+.top-nav {
+  /* shift buttons to create overlap effect */
+  .nav-item-horizontal:not(:first-child) {
+    margin-left: -10%;
+  }
+  /* use gradient to create shadow effect */
+  .nav-item-horizontal:not(:last-child) {
+    background: linear-gradient(
+      to right,
+      white 50%, 
+      transparent
+    );
+  }
+  /* shift nav item text with container */
+  .nav-item-horizontal:not(:last-child) .nav-item-text {
+    margin-left: -10%;
+  }
 }
-
-/* shift nav item text with container */
-.top-nav .nav-item-horizontal:not(:last-child) .nav-item-text {
-  margin-left: -10%;
-}
-
 /* add top margin to all but first button*/
 .side-nav .nav-item:not(:first-child) {
   margin-top: 1rem;

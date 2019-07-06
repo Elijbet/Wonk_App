@@ -17,11 +17,11 @@
           <div :class="[toggleOn ? 'displayOff' : 'displayOn']" class="back">
             <img 
               src="https://picsum.photos/450/325?image=100" 
-              style="opacity: 0.5"
               alt="Dummy Image" 
               class="masonry-content rotate"
             >
             <div class="position-text fadeIn">Card Flipped</div>
+            <div class="overlay" />
           </div>
         </div>
       </div>
@@ -158,11 +158,6 @@ footer, header, hgroup, main, menu, nav, section {
   display: block;
 }
 
-body {
-  line-height: 1.618;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 ol, ul {
   list-style: none;
 }
@@ -243,10 +238,6 @@ html {
   margin-left: auto;
   padding: 1.5em;
 }
-body {
-  background-color: #cccccc;
-  color: #333333;
-}
 .masonry-wrapper {
   padding: 1.5em;
   max-width: 1500px;
@@ -262,41 +253,33 @@ body {
   vertical-align: top;
   margin-bottom: 5px;
 }
-@media only screen and (max-width: 1023px) and (min-width: 768px) {  .masonry {
-    columns: 2;
+@include large-screen {  
+.masonry {
+    columns: 3;
   }
 }
-@media only screen and (min-width: 1024px) {
+@include extra-large-screen {
   .masonry {
     columns: 5;
   }
 }
-.masonry-item, .masonry-content {
-  border-radius: 4px;
-  overflow: hidden;
-}
 .masonry-item {
+  .masonry-content {
+    border-radius: 4px;
+    overflow: hidden;
+  }
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));
   transition: filter .25s ease-in-out;
 }
-.masonry-item:hover {
-  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, .3));
-}
+
 // FLIP CARD ANIMATION
-.back {
-  top: 8px;
-  left: 16px;
-}
 .rotate {
   /* rotating the back face of the card */
-  -ms-transform: rotateY(-180deg); /* IE 9 */
-  -webkit-transform: rotateY(-180deg); /* Safari */
   transform: rotateY(-180deg);
 }
 .displayOn {
   display: block;
 }
-
 .displayOff {
   display: none;
 }
@@ -311,6 +294,8 @@ body {
   position: relative;
   text-align: center;
   color: white;
+  transition: transform .5s;
+  transform-style: preserve-3d;
 }
 .position-text {
   position: absolute;
@@ -319,14 +304,21 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.card{
- transition: transform .5s;
- transform-style: preserve-3d;
-}
 .card-wrapper {
   perspective:800px;
 }
 .transform {
   transform: rotateY(-180deg);
+}
+.back {
+  filter: grayscale(100%);
+}
+.overlay { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right:0; 
+  bottom:0; 
+  background-color: rgba(0,0,0,0.5); 
 }
 </style>
