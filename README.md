@@ -1,8 +1,7 @@
 # WONK APP
 
 > Wonk is an app for bookworms to geek out on their books. You can shuffle your bookshelves based on reading progress. It also a tool to wonk out on specific books: get all the podcast, events, news, as well as find out whther it has been adopted into a movie. Reworking the Goodreads API Vue app done a couple of years ago with new skills and features.
- 
-___
+
 
 ## Project Roadmap
 
@@ -11,7 +10,7 @@ ___
 
 #### NAVBAR
 
-- translate codepen react nav into vue; make modification to  designadopt to my purposes;
+- translate codepen react nav into vue; make modification to adopt to my purposes;
 - items on nav BROWSE | MY BOOKS | WONK OUT
 - rewrite mobile first
 - factor out nav css into scss
@@ -28,7 +27,7 @@ ___
 
 - flip card animation to turn independently for each
 
-### HIDE SECRET KEYS
+#### HIDE SECRET KEYS
 
 - create a file called .env in the root of your project's directory
 - inside the .env file, prepend VUE_APP_title to your API key name of choice and assign it
@@ -54,3 +53,7 @@ cd into the project
 npm run serve
 ```
 
+#### Attribution
+
+find by Kokota from the Noun Project
+responsive react nav by  Matthew Vincent

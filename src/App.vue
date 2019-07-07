@@ -3,7 +3,10 @@
     <NavBar>
       <div id="app" /> 
     </NavBar>
-    <MasonryBookResults/>
+    <div class="contents">
+      <SearchBarBrowse></SearchBarBrowse>
+      <MasonryBookResults/>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -11,6 +14,7 @@
 <script>
 import HomeBrowse from './components/HomeBrowse.vue'
 import NavBar from './components/NavBar.vue'
+import SearchBarBrowse from './components/SearchBarBrowse.vue'
 import MasonryBookResults from './components/MasonryBookResults.vue'
 import Footer from './components/Footer.vue'
 
@@ -19,6 +23,7 @@ export default {
   components: {
     HomeBrowse,
     NavBar,
+    SearchBarBrowse,
     MasonryBookResults,
     Footer
   }
@@ -39,5 +44,11 @@ export default {
    thistle
   );
 
+}
+.contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -1,12 +1,33 @@
+// mixin to import fonts
+@mixin google-font($font){
+  // put in correct format with unquote
+  $font: unquote($font);
+  @import url(https://fonts.googleapis.com/css?family=#{$font})
+}
+
+//@include brings in the defined mixin
+//pass in the font to the mixin that imports fonts
+@include google-font("Neucha");
+@include google-font("Quicksand");
+
 @mixin large-text {
   font: {
-    size: 1rem;
+    size: 1.2rem;
   	weight: 400;
   	weight: bold;
+    family: $navbar-font;
   }
-  // @include brings in the defined mixin
-	// pass in the font to the mixin that imports fonts
-  @include google-font('Quicksand');
+}
+
+@mixin search-bar-text {
+  text-transform: none;
+  letter-spacing: 0.3rem;
+  color: #C8C8C8;
+  font: {
+    family: $search-bar-font;
+    size: 1rem;
+    weight: bold;
+  }
 }
 
 @mixin rounded($radius: 3rem) {
@@ -30,15 +51,6 @@
   box-shadow: $shadow;
   background: white;
   transition: transform $transition-time ease-in-out;
-  @include large-text;
-}
-
-// mixin to import fonts
-
-@mixin google-font($font){
-  // put in correct format with unquote
-  $font: unquote($font);
-  @import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700)
 }
 
 // combine media quieries with mixins

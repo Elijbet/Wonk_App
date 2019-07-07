@@ -94,10 +94,12 @@
 
 .nav-item-horizontal {
   @include nav-item;
+  @include large-text;
 }
 
 .nav-item {
   @include nav-item;
+  @include large-text;
   display: none;
 }
 
@@ -115,7 +117,6 @@
    transform $transition-time ease-in-out, 
    background-color $transition-time ease-in-out;
 }
-
 
 .top-nav {
   /* shift buttons to create overlap effect */

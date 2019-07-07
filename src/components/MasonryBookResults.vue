@@ -22,7 +22,7 @@
               alt="Dummy Image" 
               class="masonry-content"
             >
-            <div class="position-text fadeIn ">{{book.description}}</div>
+            <div class="position-text fadeIn">{{book.description}}</div>
             <div class="overlay" />
           </div>
         </div>
@@ -167,16 +167,14 @@ html {
   box-sizing: inherit;
 }
 .wrapper { 
-  max-width: 1280px;
+  max-width: $page-width;
   margin-right: auto;
   margin-left: auto;
   padding: 1.5em;
 }
 .masonry-wrapper {
   padding: 1.5em;
-  max-width: 1200px;
-  margin-right: auto;
-  margin-left: auto;
+  max-width: $page-width;
 }
 .masonry {
   columns: 1;
