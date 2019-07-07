@@ -16,10 +16,13 @@ input[type="text"] {
 	padding: 0 40px;
 	box-sizing: border-box;
 	border-radius: 5px;
+	@include search-bar-text;
+  font-size: 0.7rem;
 }
 ::placeholder { 
   @include search-bar-text;
   font-size: 0.7rem;
+  color: #C8C8C8;
 }
 img {
 	max-width: 50px;
@@ -46,6 +49,9 @@ label::after {
 	::placeholder { 
 	  @include search-bar-text;
 	}
+	input[type="text"] {
+	  @include search-bar-text;
+	}
 }
 @include extra-large-screen {
 	.size {
@@ -54,6 +60,9 @@ label::after {
 		margin-top: 40px;
 	}
 	::placeholder { 
+	  @include search-bar-text;
+	}
+	input[type="text"] {
 	  @include search-bar-text;
 	}
 }

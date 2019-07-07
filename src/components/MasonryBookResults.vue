@@ -7,6 +7,7 @@
           class="masonry-item card" 
           v-on:click="flip"
           :class="[toggleOn ? '' : 'rotate']">
+
           <div :class="[toggleOn ? 'displayOn' : 'displayOff']" class="front">
             <img 
               :src="book.book_image" 
@@ -15,6 +16,7 @@
               class="masonry-content fadeIn"
             >
           </div>
+
           <div :class="[toggleOn ? 'displayOff' : 'displayOn']" class="back rotate">
             <img 
               :src="book.book_image" 
@@ -23,11 +25,14 @@
               class="masonry-content"
             >
             <div class="position-text fadeIn">{{book.description}}</div>
-            <div class="overlay" />
+            <div class="overlay"></div>
           </div>
+
+
+          <button class="button"><img src="../assets/noun_book.svg" alt="book" class="book-icon"><img src="../assets/noun_add.svg" alt="book" class="add-icon"></button>
+
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -183,17 +188,7 @@ html {
 .masonry-item {
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 15px;
-}
-@include large-screen {  
-.masonry {
-    columns: 3;
-  }
-}
-@include extra-large-screen {
-  .masonry {
-    columns: 5;
-  }
+  margin-bottom: 5px;
 }
 .masonry-item {
   .masonry-content {
@@ -253,4 +248,41 @@ html {
   bottom:0; 
   background-color: rgba(0,0,0,0.8); 
 }
+
+// BOOKS OWN BUTTONS
+
+.button {
+  @include nav-item;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.book-icon {
+  width: 50px;
+  height: 50px;
+  padding-top: 8px;
+  padding-left: 10px;
+}
+.add-icon {
+  width: 40px;
+  height: 40px;
+  padding-top: 8px;
+  padding-right: 10px;
+}
+
+@include large-screen {  
+  .masonry {
+    columns: 3;
+  }
+}
+@include extra-large-screen {
+  .masonry {
+    columns: 5;
+  }
+}
+
 </style>
+

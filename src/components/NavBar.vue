@@ -94,6 +94,7 @@
 
 .nav-item-horizontal {
   @include nav-item;
+  @include rounded;
   @include large-text;
 }
 

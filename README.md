@@ -56,4 +56,6 @@ npm run serve
 #### Attribution
 
 find by Kokota from the Noun Project
+Book by Tatyana from the Noun Project
+add by Sumana Chamrunworakiat from the Noun Project
 responsive react nav by  Matthew Vincent
