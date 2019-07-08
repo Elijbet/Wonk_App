@@ -24,6 +24,7 @@
 - get books from NYT books on the best sellers, append last 3 years
 - have a default populated view
 - a description on the flipped back of the card
+- individual buttons on books to direct to book page and dropdown to add to bookshelves
 
 - flip card animation to turn independently for each
 
@@ -58,4 +59,6 @@ npm run serve
 find by Kokota from the Noun Project
 Book by Tatyana from the Noun Project
 add by Sumana Chamrunworakiat from the Noun Project
+rating by Alex Muravev from the Noun Project
+menu by darwis from the Noun Project
 responsive react nav by  Matthew Vincent

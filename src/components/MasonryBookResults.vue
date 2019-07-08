@@ -28,10 +28,38 @@
             <div class="overlay"></div>
           </div>
 
-
-          <button class="button"><img src="../assets/noun_book.svg" alt="book" class="book-icon"><img src="../assets/noun_add.svg" alt="book" class="add-icon"></button>
-
         </div>
+        <button id="menu"  class="button" >
+          <section :class="[buttonToggleOn ? 'displayFlexOn' : 'displayOff']">
+            <img src="../assets/noun_book.svg" alt="book" class="book-icon">
+            <img src="../assets/noun_rating.svg" alt="book" class="rating-icon" v-on:click="toggle">
+            <img src="../assets/noun_add.svg" alt="book" class="add-icon">
+          </section>
+          <!-- LIKE -->
+          <div :class="[buttonToggleOn ? 'displayOff' : 'displayFlexOn']" class="align">
+            <section 
+              id="like" 
+              class="rating">
+              <!-- FIFTH HEART -->
+              <input type="radio" id="heart_5" name="like" value="5" v-model="picked"/>
+              <label for="heart_5" title="Five">&#10084;</label>
+              <!-- FOURTH HEART -->
+              <input type="radio" id="heart_4" name="like" value="4" v-model="picked"/>
+              <label for="heart_4" title="Four">&#10084;</label>
+              <!-- THIRD HEART -->
+              <input type="radio" id="heart_3" name="like" value="3" v-model="picked"/>
+              <label for="heart_3" title="Three">&#10084;</label>
+              <!-- SECOND HEART -->
+              <input type="radio" id="heart_2" name="like" value="2" v-model="picked"/>
+              <label for="heart_2" title="Two">&#10084;</label>
+              <!-- FIRST HEART -->
+              <input type="radio" id="heart_1" name="like" value="1" v-model="picked"/>
+              <label for="heart_1" title="One">&#10084;</label>
+            </section>
+            <img src="../assets/noun_menu.svg" alt="book" class="menu-icon" v-on:click="toggle">
+
+          </div>
+        </button>
       </div>
     </div>
   </div>
@@ -44,6 +72,8 @@ import axios from 'axios';
     data(){
       return{
         toggleOn: true,
+        buttonToggleOn: true,
+        picked: '',
         books: []
       }
     },
@@ -66,6 +96,9 @@ import axios from 'axios';
     methods: {
       flip(){
         this.toggleOn = !this.toggleOn
+      },
+      toggle(){
+        this.buttonToggleOn = !this.buttonToggleOn
       }
     }
   }
@@ -256,9 +289,10 @@ html {
   width: 100%;
   border-radius: 5px;
   margin-bottom: 15px;
-  display: flex;
   justify-content: space-between;
   margin-top: 5px;
+  display: flex;
+  justify-content: center;
 }
 .book-icon {
   width: 50px;
@@ -272,6 +306,69 @@ html {
   padding-top: 8px;
   padding-right: 10px;
 }
+.rating-icon {
+  width: 120px;
+  height: 120px;
+  transform: translateY(-20px);
+}
+.menu-icon {
+  width: 50px;
+  height: 50px;
+  transform: translateY(5px);
+}
+section {
+  width: 100%;
+}
+.displayFlexOn {
+  display: flex;
+}
+
+/* - - - - - LIKE */
+.align {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(7px);
+}
+.rating:not(:checked) > input {
+  display: none;
+}
+
+#like {
+  bottom: -65px;
+}
+#like:not(:checked) > label {
+  cursor:pointer;
+  float: right;
+  width: 30px;
+  height: 30px;
+  display: block;
+  
+  color: rgba(233, 54, 40, .4);
+  line-height: 33px;
+  text-align: center;
+}
+#like:not(:checked) > label:hover,
+#like:not(:checked) > label:hover ~ label {
+  color: rgba(233, 54, 40, .6);
+}
+#like > input:checked + label:hover,
+#like > input:checked + label:hover ~ label,
+#like > input:checked ~ label:hover,
+#like > input:checked ~ label:hover ~ label,
+#like > label:hover ~ input:checked ~ label {
+  color: rgba(233, 54, 40, .8);
+}
+#like > input:checked ~ label {
+  color: rgb(233, 54, 40);
+}
+#like {
+  label {
+    font-size: 20px; 
+  }
+}
+
+// MEDIA QUERIES
 
 @include large-screen {  
   .masonry {
