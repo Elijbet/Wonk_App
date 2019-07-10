@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import HomeBrowse from './components/HomeBrowse.vue'
 import NavBar from './components/NavBar.vue'
 import SearchBarBrowse from './components/SearchBarBrowse.vue'
 import MasonryBookResults from './components/MasonryBookResults.vue'
@@ -21,7 +20,6 @@ import Footer from './components/Footer.vue'
 export default {
   name: 'app',
   components: {
-    HomeBrowse,
     NavBar,
     SearchBarBrowse,
     MasonryBookResults,

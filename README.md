@@ -43,7 +43,7 @@
 - mimic unfolded history from google search 
 - save last 10 items of history search
 - list recent first
-- make search work
+- seach query to Goodreads reaplaces default NYT best books list, and displays default images if they are present, or search images of they are requested.
 
 ___
 

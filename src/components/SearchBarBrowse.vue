@@ -1,10 +1,30 @@
 <template>
 	<div class="size">
 		<label>
-			<input type ="text" style="width: 100%" placeholder="Enter a Book Title, or an Author."/>
+			<input 
+				type ="text" 
+				style="width: 100%" 
+				placeholder="Enter a Book Title, or an Author."
+				v-on:change="search"/>
 		</label>
 	</div>
 </template>
+
+<script>
+	export default {
+    data(){
+      return{
+      }
+    },
+	  methods: {
+	  	search(e){
+	  		console.log('onchange', e.target.value)
+	  		this.$store.dispatch('resetData')
+	  		this.$store.dispatch('searchGoogleBooks', e.target.value)
+	  	}
+	  }
+	}
+</script>
 
 <style  lang="scss" scoped>
 .size {

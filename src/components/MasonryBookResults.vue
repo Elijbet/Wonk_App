@@ -1,7 +1,6 @@
 <template>
   <div class="masonry-wrapper">
     <div class="masonry">
-    
       <div class="card-wrapper" v-for="book in books">
         <div 
           class="masonry-item card" 
@@ -10,7 +9,7 @@
 
           <div :class="[toggleOn ? 'displayOn' : 'displayOff']" class="front">
             <img 
-              :src="book.book_image" 
+              :src="book.book_image ? book.book_image : book.volumeInfo.imageLinks.thumbnail" 
               width="300px"
               alt="Dummy Image" 
               class="masonry-content fadeIn"
@@ -19,7 +18,7 @@
 
           <div :class="[toggleOn ? 'displayOff' : 'displayOn']" class="back rotate">
             <img 
-              :src="book.book_image" 
+              :src="book.book_image ? book.book_image : book.volumeInfo.imageLinks.thumbnail" 
               width="300px"
               alt="Dummy Image" 
               class="masonry-content"
@@ -29,36 +28,32 @@
           </div>
 
         </div>
-        <button id="menu"  class="button" >
-          <section :class="[buttonToggleOn ? 'displayFlexOn' : 'displayOff']">
-            <img src="../assets/noun_book.svg" alt="book" class="book-icon">
-            <img src="../assets/noun_rating.svg" alt="book" class="rating-icon" v-on:click="toggle">
-            <img src="../assets/noun_add.svg" alt="book" class="add-icon">
-          </section>
-          <!-- LIKE -->
-          <div :class="[buttonToggleOn ? 'displayOff' : 'displayFlexOn']" class="align">
-            <section 
-              id="like" 
-              class="rating">
-              <!-- FIFTH HEART -->
-              <input type="radio" id="heart_5" name="like" value="5" v-model="picked"/>
-              <label for="heart_5" title="Five">&#10084;</label>
-              <!-- FOURTH HEART -->
-              <input type="radio" id="heart_4" name="like" value="4" v-model="picked"/>
-              <label for="heart_4" title="Four">&#10084;</label>
-              <!-- THIRD HEART -->
-              <input type="radio" id="heart_3" name="like" value="3" v-model="picked"/>
-              <label for="heart_3" title="Three">&#10084;</label>
-              <!-- SECOND HEART -->
-              <input type="radio" id="heart_2" name="like" value="2" v-model="picked"/>
-              <label for="heart_2" title="Two">&#10084;</label>
-              <!-- FIRST HEART -->
-              <input type="radio" id="heart_1" name="like" value="1" v-model="picked"/>
-              <label for="heart_1" title="One">&#10084;</label>
-            </section>
-            <img src="../assets/noun_menu.svg" alt="book" class="menu-icon" v-on:click="toggle">
+        <button id="menu"  class="button">
 
-          </div>
+            <img src="../assets/noun_book.svg" alt="book" class="book-icon">
+
+              <section 
+                id="like" 
+                class="rating">
+                <!-- FIFTH HEART -->
+                <input type="radio" id="heart_5" name="like" value="5" v-model="picked"/>
+                <label for="heart_5" title="Five">&#10084;</label>
+                <!-- FOURTH HEART -->
+                <input type="radio" id="heart_4" name="like" value="4" v-model="picked"/>
+                <label for="heart_4" title="Four">&#10084;</label>
+                <!-- THIRD HEART -->
+                <input type="radio" id="heart_3" name="like" value="3" v-model="picked"/>
+                <label for="heart_3" title="Three">&#10084;</label>
+                <!-- SECOND HEART -->
+                <input type="radio" id="heart_2" name="like" value="2" v-model="picked"/>
+                <label for="heart_2" title="Two">&#10084;</label>
+                <!-- FIRST HEART -->
+                <input type="radio" id="heart_1" name="like" value="1" v-model="picked"/>
+                <label for="heart_1" title="One">&#10084;</label>
+              </section>
+
+            <img src="../assets/noun_add.svg" alt="book" class="add-icon">
+          
         </button>
       </div>
     </div>
@@ -74,23 +69,17 @@ import axios from 'axios';
         toggleOn: true,
         buttonToggleOn: true,
         picked: '',
-        books: []
       }
     },
-    async created(){
-      try {
-        const response = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.VUE_APP_NYT_BOOKS_API}`)
-        const secondResponse = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/2018-01-01/hardcover-fiction.json?api-key=${process.env.VUE_APP_NYT_BOOKS_API}`)
-        const thirdResponse = await axios.get(`https://api.nytimes.com/svc/books/v3/lists/2017-01-01/hardcover-fiction.json?api-key=${process.env.VUE_APP_NYT_BOOKS_API}`)
-
-        this.books = response.data.results.books
-        this.books.push(... secondResponse.data.results.books)
-        this.books.push(... thirdResponse.data.results.books)
-
-        console.log('this.books', this.books)
-      } catch (e) {
-        console.log('e', e)
-        // this.errors.push(e)
+    created(){
+      this.$store.dispatch('bestSelectionBooks')
+    }, 
+    computed: {
+      books() {
+        return this.$store.getters.books;
+      },
+      defaultOrSearch() {
+        return this.book.book_image ? this.book.book_image : this.book.volumeInfo.imageLinks.thumbnail + '&zoom=0'
       }
     },
     methods: {
@@ -292,7 +281,7 @@ html {
   justify-content: space-between;
   margin-top: 5px;
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 .book-icon {
   width: 50px;
@@ -311,11 +300,7 @@ html {
   height: 120px;
   transform: translateY(-20px);
 }
-.menu-icon {
-  width: 50px;
-  height: 50px;
-  transform: translateY(5px);
-}
+
 section {
   width: 100%;
 }
@@ -324,6 +309,12 @@ section {
 }
 
 /* - - - - - LIKE */
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-10px);
+}
 .align {
   flex-direction: row;
   justify-content: center;
@@ -334,14 +325,11 @@ section {
   display: none;
 }
 
-#like {
-  bottom: -65px;
-}
 #like:not(:checked) > label {
   cursor:pointer;
   float: right;
-  width: 30px;
-  height: 30px;
+  width: 18px;
+  height: 18px;
   display: block;
   
   color: rgba(233, 54, 40, .4);
@@ -364,7 +352,7 @@ section {
 }
 #like {
   label {
-    font-size: 20px; 
+    font-size: 15px; 
   }
 }
 
