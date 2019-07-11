@@ -18,7 +18,6 @@
     },
 	  methods: {
 	  	search(e){
-	  		console.log('onchange', e.target.value)
 	  		this.$store.dispatch('resetData')
 	  		this.$store.dispatch('searchGoogleBooks', e.target.value)
 	  	}
