@@ -51,6 +51,11 @@
   transition: transform $transition-time ease-in-out;
 }
 
+@mixin flex-all-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 // combine media quieries with mixins
 // mobile first query
 

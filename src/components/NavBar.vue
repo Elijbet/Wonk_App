@@ -3,7 +3,7 @@
 		<div class="top-nav">
 			<button class="nav-item-horizontal" v-for="tab in tabs"> 
 		    <span class="nav-item-text">
-		      {{tab}}
+          <router-link :to="{ name: `${tab}`}">{{tab}}</router-link>
 		    </span>
 		  </button>
 		</div>
@@ -22,7 +22,7 @@
       	class="nav-item"
       	:class="[sideNavOpen ? 'display' : '']"> 
 		    <span class="nav-item-text">
-		      {{tab}}
+		       <router-link :to="{ name: `${tab}`}">{{tab}}</router-link>
 		    </span>
 		  </button>
 	  </div>
@@ -33,7 +33,7 @@
 	export default {
 		data() {
 	    return {
-	    	tabs: ['Browse', 'My Books', 'Wonk Out'],
+	    	tabs: ['Browse', 'My Books', 'Book'],
 	      sideNavOpen: false
 	    }
 	  }
@@ -100,6 +100,7 @@
 
 .nav-item {
   @include nav-item;
+  @include rounded;
   @include large-text;
   display: none;
 }
@@ -118,6 +119,11 @@
    transform $transition-time ease-in-out, 
    background-color $transition-time ease-in-out;
 }
+
+a { 
+  color: inherit; 
+  text-decoration: none;
+} 
 
 .top-nav {
   /* shift buttons to create overlap effect */

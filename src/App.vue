@@ -5,7 +5,7 @@
     </NavBar>
     <div class="contents">
       <SearchBarBrowse></SearchBarBrowse>
-      <MasonryBookResults/>
+      <router-view></router-view>
     </div>
     <Footer/>
   </div>
@@ -44,9 +44,8 @@ export default {
 
 }
 .contents {
-  display: flex;
+  @include flex-all-center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
+
 </style>

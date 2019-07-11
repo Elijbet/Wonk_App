@@ -2,59 +2,62 @@
   <div class="masonry-wrapper">
     <div class="masonry">
       <div class="card-wrapper" v-for="book in books">
-        <div 
-          class="masonry-item card" 
-          v-on:click="flip"
-          :class="[toggleOn ? '' : 'rotate']">
+        <div class="masonry-item">
+          <div 
+            class="card" 
+            v-on:click="flip"
+            :class="[toggleOn ? '' : 'rotate']">
 
-          <div :class="[toggleOn ? 'displayOn' : 'displayOff']" class="front">
-            <img 
-              :src="book.book_image ? book.book_image : book.volumeInfo.imageLinks.thumbnail" 
-              width="300px"
-              alt="Dummy Image" 
-              class="masonry-content fadeIn"
-            >
+            <div :class="[toggleOn ? 'displayOn' : 'displayOff']" class="front">
+              <img 
+                :src="book.book_image ? book.book_image : book.volumeInfo.imageLinks.thumbnail + '&zoom=0'" 
+                width="300px"
+                alt="Dummy Image" 
+                class="masonry-content fadeIn"
+              >
+            </div>
+
+            <div :class="[toggleOn ? 'displayOff' : 'displayOn']" class="back rotate">
+              <div class="overlay">
+                <img 
+                  :src="book.book_image ? book.book_image : book.volumeInfo.imageLinks.thumbnail + '&zoom=0'" 
+                  width="300px"
+                  alt="Dummy Image" 
+                  class="masonry-content "
+                >
+              </div>
+              <div class="position-text fadeIn">{{book.description ? book.description : (book.volumeInfo.description ? book.volumeInfo.description.substring(0, 120) : '')}}... </div>
+            </div>
+
           </div>
+          <button id="menu"  class="button">
 
-          <div :class="[toggleOn ? 'displayOff' : 'displayOn']" class="back rotate">
-            <img 
-              :src="book.book_image ? book.book_image : book.volumeInfo.imageLinks.thumbnail" 
-              width="300px"
-              alt="Dummy Image" 
-              class="masonry-content"
-            >
-            <div class="position-text fadeIn">{{book.description}}</div>
-            <div class="overlay"></div>
-          </div>
+              <img src="../assets/noun_book.svg" alt="book" class="book-icon">
 
+                <section 
+                  id="like" 
+                  class="rating">
+                  <!-- FIFTH HEART -->
+                  <input type="radio" id="heart_5" name="like" value="5" v-model="picked"/>
+                  <label for="heart_5" title="Five">&#10084;</label>
+                  <!-- FOURTH HEART -->
+                  <input type="radio" id="heart_4" name="like" value="4" v-model="picked"/>
+                  <label for="heart_4" title="Four">&#10084;</label>
+                  <!-- THIRD HEART -->
+                  <input type="radio" id="heart_3" name="like" value="3" v-model="picked"/>
+                  <label for="heart_3" title="Three">&#10084;</label>
+                  <!-- SECOND HEART -->
+                  <input type="radio" id="heart_2" name="like" value="2" v-model="picked"/>
+                  <label for="heart_2" title="Two">&#10084;</label>
+                  <!-- FIRST HEART -->
+                  <input type="radio" id="heart_1" name="like" value="1" v-model="picked"/>
+                  <label for="heart_1" title="One">&#10084;</label>
+                </section>
+
+              <img src="../assets/noun_add.svg" alt="book" class="add-icon">
+            
+          </button>
         </div>
-        <button id="menu"  class="button">
-
-            <img src="../assets/noun_book.svg" alt="book" class="book-icon">
-
-              <section 
-                id="like" 
-                class="rating">
-                <!-- FIFTH HEART -->
-                <input type="radio" id="heart_5" name="like" value="5" v-model="picked"/>
-                <label for="heart_5" title="Five">&#10084;</label>
-                <!-- FOURTH HEART -->
-                <input type="radio" id="heart_4" name="like" value="4" v-model="picked"/>
-                <label for="heart_4" title="Four">&#10084;</label>
-                <!-- THIRD HEART -->
-                <input type="radio" id="heart_3" name="like" value="3" v-model="picked"/>
-                <label for="heart_3" title="Three">&#10084;</label>
-                <!-- SECOND HEART -->
-                <input type="radio" id="heart_2" name="like" value="2" v-model="picked"/>
-                <label for="heart_2" title="Two">&#10084;</label>
-                <!-- FIRST HEART -->
-                <input type="radio" id="heart_1" name="like" value="1" v-model="picked"/>
-                <label for="heart_1" title="One">&#10084;</label>
-              </section>
-
-            <img src="../assets/noun_add.svg" alt="book" class="add-icon">
-          
-        </button>
       </div>
     </div>
   </div>
@@ -248,7 +251,6 @@ html {
 }
 .position-text {
   position: absolute;
-  z-index: 99;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -260,15 +262,14 @@ html {
 }
 .back {
   filter: grayscale(100%);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 .overlay { 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  right:0; 
-  bottom:0; 
-  background-color: rgba(0,0,0,0.8); 
+  background: black; 
+  display: inline-block; 
+}
+.overlay img {
+  opacity: 0.2;
 }
 
 // BOOKS OWN BUTTONS
@@ -280,8 +281,7 @@ html {
   margin-bottom: 15px;
   justify-content: space-between;
   margin-top: 5px;
-  display: flex;
-  align-items: center;
+  @include flex-all-center;
 }
 .book-icon {
   width: 50px;
@@ -310,15 +310,12 @@ section {
 
 /* - - - - - LIKE */
 .rating {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-all-center;
   transform: translateY(-10px);
 }
 .align {
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  @include flex-all-center;
   transform: translateX(7px);
 }
 .rating:not(:checked) > input {

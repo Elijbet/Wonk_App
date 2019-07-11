@@ -45,6 +45,9 @@
 - list recent first
 - seach query to Goodreads reaplaces default NYT best books list, and displays default images if they are present, or search images of they are requested.
 
+#### INDIVIDUAL BOOK PAGE
+
+- set up router links
 ___
 
 ## Project setup
