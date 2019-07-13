@@ -96,6 +96,7 @@
   @include nav-item;
   @include rounded;
   @include large-text;
+  border: 4px solid black;
 }
 
 .nav-item {

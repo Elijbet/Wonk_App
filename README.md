@@ -48,6 +48,10 @@
 #### INDIVIDUAL BOOK PAGE
 
 - set up router links
+- codepen on how to flip just one card through component
+- quartered page with masonry layout each
+- events: ticketmaster API
+- podcasts section: listen notes API
 ___
 
 ## Project setup

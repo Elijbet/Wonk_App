@@ -13,19 +13,40 @@
 	  			<br>
 	  			{{event.dates.start.localDate}} {{event.dates.start.localTime}}
 	  			<br>
-	  			<img :src="event.images[1].url"></img>
+	  			<img :src="event.images[1].url || '../assets/no-image.jpg'"></img>
 	  			<br>
 	  			{{event._embedded.venues[0].city.name}}
 	  		</a>
-	  		
 	  	</div>
 	  </div>
-	  <div class="item3"></div>  
-	  <div class="item4"></div>
-	  <div class="item5">EVENTS</div>
-	  <div class="item6">PODCASTS</div>
-	  <div class="item7">IMDB</div>
-	  <div class="item8">NEWS</div>
+	  <div class="movies">
+	  	<div class="card" v-for="movie in movies">
+	  		<a>
+	  			{{movie.Title}}
+	  			<br>
+	  			<img :src="movie.Poster" @error="error"></img>
+	  			<br>
+	  			{{movie.Year}} 
+	  			<br>
+	  		</a>
+	  	</div>
+	  </div>  
+	  <div class="news">
+	  	<div class="card" v-for="nw in news">
+	  		<a :href="nw.url">
+	  			{{nw.title}}
+	  			<br>
+	  			<img :src="nw.urlToImage" @error="error"></img>
+	  			<br>
+	  			{{nw.publishedAt}} 
+	  			<br>
+	  		</a>
+	  	</div>
+	  </div>  
+	  <div class="item5">PODCASTS</div>
+	  <div class="item6">AUTHOR EVENTS</div>
+	  <div class="item7">MOVIE ADAPTATIONS</div>
+	  <div class="item8">IN THE NEWS</div>
 	</div>
 </template>
 
@@ -36,22 +57,50 @@ import axios from 'axios';
 		data(){
 			return {
 				fakeData: ['col1', 'col2', 'col3', 'col4', 'col5', 'col6'],
-				events: []
+				events: [],
+				movies: [],
+				news: []
 			}
 		},
 		async created() {
 			let bookPick = this.$store.getters.bookPick;
+
 			console.log('bookPick', bookPick)
-			let author = bookPick.	author ? bookPick.author : bookPick.volumeInfo.authors[0]
+
+			let author = bookPick.author ? bookPick.author : bookPick.volumeInfo.authors[0]
+			let title = bookPick.title ? bookPick.title : bookPick.volumeInfo.title
+
 			try {
+				//Get all events for this author
 				const responseEvents = await axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${author}&apikey=hjgAxKolN47vlcdLYwppa5uhooNJbqDp`)
 				let localEvents = await responseEvents.data
+				// console.log('localEvents', localEvents)
 				this.events = localEvents._embedded.events
-				console.log('this.events', this.events)
+				// console.log('this.events', this.events)
+
+				//Get all movies by this title
+				const responseMovies = await axios.get(`http://www.omdbapi.com/?s=${title}&apikey=5bafa180`)
+				let localMovies = await responseMovies.data
+				this.movies = localMovies.Search
+				// console.log('localMovies.Search', localMovies.Search)
+
+				//Get Google News
+				console.log('author', author)
+				const responseNews = await axios.get(`https://newsapi.org/v2/everything?q=${author}&from=2019-06-13&sortBy=publishedAt&apiKey=75a14b1de0584351b4bb37e594593663`)
+				let localNews = await responseNews.data
+				this.news = localNews.articles
+				console.log('this.news', this.news)
+
 			} catch (e) {
 	      console.log('e', e)
 	      // this.errors.push(e)
 	    }
+		},
+		methods:{
+			error(event){
+				// console.log('event', event)
+				 
+			}
 		}
 	}
 </script>
@@ -65,15 +114,15 @@ import axios from 'axios';
 	background: #F75E50;
 }
 .events {
-  grid-area: myArea2;
+  grid-area: eventsArea;
   background: #EAC761;
 }
-.item3 {
-  grid-area: myArea3;
+.movies {
+  grid-area: moviesArea;
   background: #E8DF9C;
 }
-.item4 {
-  grid-area: myArea4;
+.news {
+  grid-area: newsArea;
   background: #91C09E;
 }
 .item5 {
@@ -104,7 +153,7 @@ import axios from 'axios';
   grid-auto-rows: minmax(min-content, max-content);
   grid-template:
   'myArea5 myArea6 myArea7 myArea8'
-  'myArea1 myArea2 myArea3 myArea4'
+  'myArea1 eventsArea moviesArea newsArea'
   ;
   grid-gap: 5px;
   border: 5px solid black;
@@ -117,7 +166,7 @@ import axios from 'axios';
 	/* Boxes That Fill Height (Or More) (and Don’t Squish). 
 	If there is extra room, the space will be divided and filled. */
 	/*flex: 1;*/
-	height: 300px;
+	height: 350px;
 	justify-content: space-between;
   font-size: 0.9em;
   padding-top: 10px;
@@ -125,7 +174,15 @@ import axios from 'axios';
 .card:last-child {
 	border-bottom: none;
 }
-img {
+.events img {
+	padding: 20px;
+	max-width: 250px;
+}
+.movies img {
+	padding: 20px;
+	max-width: 150px;
+}
+.news img {
 	padding: 20px;
 	max-width: 250px;
 }

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <NavBar>
-      <div id="app" /> 
+    <br>
+    <NavBar class="margin">
+      <div id="app"></div>
     </NavBar>
     <div class="contents">
       <router-view></router-view>
@@ -44,6 +45,9 @@ export default {
   box-sizing: border-box;
   padding-right: 40px;
   padding-left: 40px;
+}
+.margin {
+  margin: 20px 40px 0px 40px;
 }
 
 </style>
