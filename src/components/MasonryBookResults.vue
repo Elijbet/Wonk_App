@@ -1,8 +1,11 @@
 <template>
-  <div class="masonry-wrapper">
-    <div class="masonry">
-      <div class="card-wrapper" v-for="book in books">
-        <MasonryItem :book="book"></MasonryItem>
+  <div class="contents">
+    <SearchBarBrowse></SearchBarBrowse>
+    <div class="masonry-wrapper">
+      <div class="masonry">
+        <div class="card-wrapper" v-for="book in books">
+          <MasonryItem :book="book"></MasonryItem>
+        </div>
       </div>
     </div>
   </div>
@@ -11,6 +14,7 @@
 <script>
 import axios from 'axios';
 import MasonryItem from './MasonryItem.vue'
+import SearchBarBrowse from './SearchBarBrowse.vue'
 
   export default {
     created(){
@@ -22,7 +26,8 @@ import MasonryItem from './MasonryItem.vue'
       }
     },
     components: {
-      MasonryItem
+      MasonryItem,
+      SearchBarBrowse
     }
   }
 </script>
@@ -42,7 +47,17 @@ import MasonryItem from './MasonryItem.vue'
   columns: 1;
   column-gap: 15px;
 }
-
+.contents {
+  @include flex-all-center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-right: 40px;
+  padding-left: 40px;
+  width: 100%;
+}
+.card-wrapper {
+  perspective: 800px;
+}
 // MEDIA QUERIES
 
 @include large-screen {  

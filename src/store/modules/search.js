@@ -4,16 +4,21 @@ export default {
 
 	state: {
 	  books: [],
+	  bookPick: {}
 	},									
 
 	getters: {
-		books: state => state.books
+		books: state => state.books,
+		bookPick: state => state.bookPick
 	},
 
 	mutations: {
 		SET_BOOKS (state, books) {
 			state.books = books;
 		},
+		SET_BOOK_PICK (state, bookPick){
+			state.bookPick = bookPick
+		}
 	},
 
 	actions: {
@@ -50,6 +55,9 @@ export default {
 	      // this.errors.push(e)
 	    }
 	    commit('SET_BOOKS', this.books);
+	  },
+	  setBook({commit}, book){
+	  	commit('SET_BOOK_PICK', book);
 	  }
 	}
 }

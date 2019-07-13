@@ -29,7 +29,9 @@
     </div>
     <button id="menu"  class="button">
 
-        <img src="../assets/noun_book.svg" alt="book" class="book-icon">
+        <router-link :to="{ name: 'Book'}">
+        	<img src="../assets/noun_book.svg" alt="book" class="book-icon" @click="setBook">
+        </router-link>
 
           <section 
             id="like" 
@@ -73,6 +75,9 @@
     },
     toggle(){
       this.buttonToggleOn = !this.buttonToggleOn
+    },
+    setBook(){
+      this.$store.dispatch('setBook', this.book)
     }
   }
 }
@@ -218,6 +223,7 @@ html {
   color: white;
   transition: transform .5s;
   transform-style: preserve-3d;
+  height: 100%;
 }
 .position-text {
   position: absolute;
@@ -226,9 +232,6 @@ html {
   transform: translate(-50%, -50%);
   margin: 0 !important;
   padding: 0 !important;
-}
-.card-wrapper {
-  perspective: 800px;
 }
 .back {
   filter: grayscale(100%);
@@ -253,22 +256,26 @@ html {
   margin-top: 5px;
   @include flex-all-center;
 }
-.book-icon {
-  width: 50px;
-  height: 50px;
-  padding-top: 8px;
+button a {
+	padding-top: 8px;
   padding-left: 10px;
+  padding-right: 10px;
+  transform: translateY(-20px);
+}
+.book-icon {
+  width: 90px;
+  height: 90px;
 }
 .add-icon {
   width: 40px;
   height: 40px;
   padding-top: 8px;
   padding-right: 10px;
+  transform: translateY(-20px);
 }
 .rating-icon {
   width: 120px;
   height: 120px;
-  transform: translateY(-20px);
 }
 
 section {
@@ -278,10 +285,11 @@ section {
   display: flex;
 }
 
-/* - - - - - LIKE */
+// RATING/LIKE SECTION
+
 .rating {
   @include flex-all-center;
-  transform: translateY(-10px);
+	transform: translateY(-30px);
 }
 .align {
   flex-direction: row;

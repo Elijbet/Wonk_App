@@ -4,7 +4,6 @@
       <div id="app" /> 
     </NavBar>
     <div class="contents">
-      <SearchBarBrowse></SearchBarBrowse>
       <router-view></router-view>
     </div>
     <Footer/>
@@ -13,16 +12,12 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
-import SearchBarBrowse from './components/SearchBarBrowse.vue'
-import MasonryBookResults from './components/MasonryBookResults.vue'
 import Footer from './components/Footer.vue'
 
 export default {
   name: 'app',
   components: {
     NavBar,
-    SearchBarBrowse,
-    MasonryBookResults,
     Footer
   }
 }
@@ -46,6 +41,9 @@ export default {
 .contents {
   @include flex-all-center;
   flex-direction: column;
+  box-sizing: border-box;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 </style>
