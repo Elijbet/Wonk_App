@@ -72,21 +72,21 @@ import axios from 'axios';
 
 			try {
 				//Get all events for this author
-				const responseEvents = await axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${author}&apikey=hjgAxKolN47vlcdLYwppa5uhooNJbqDp`)
+				const responseEvents = await axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${author}&apikey=${process.env.VUE_APP_TICKETMASTER_API}`)
 				let localEvents = await responseEvents.data
 				// console.log('localEvents', localEvents)
 				this.events = localEvents._embedded.events
 				// console.log('this.events', this.events)
 
 				//Get all movies by this title
-				const responseMovies = await axios.get(`http://www.omdbapi.com/?s=${title}&apikey=5bafa180`)
+				const responseMovies = await axios.get(`http://www.omdbapi.com/?s=${title}&apikey=${process.env.VUE_APP_OMDB_API}`)
 				let localMovies = await responseMovies.data
 				this.movies = localMovies.Search
 				// console.log('localMovies.Search', localMovies.Search)
 
 				//Get Google News
 				console.log('author', author)
-				const responseNews = await axios.get(`https://newsapi.org/v2/everything?q=${author}&from=2019-06-13&sortBy=publishedAt&apiKey=75a14b1de0584351b4bb37e594593663`)
+				const responseNews = await axios.get(`https://newsapi.org/v2/everything?q=${author}&from=2019-06-16&sortBy=publishedAt&apiKey=${process.env.VUE_APP_NEWS_API}`)
 				let localNews = await responseNews.data
 				this.news = localNews.articles
 				console.log('this.news', this.news)
@@ -168,8 +168,10 @@ import axios from 'axios';
 	/*flex: 1;*/
 	height: 350px;
 	justify-content: space-between;
-  font-size: 0.9em;
-  padding-top: 10px;
+  font-size: 0.7em;
+  color: #606060;
+  padding: 20px;
+  @include flex-all-center;
 }
 .card:last-child {
 	border-bottom: none;

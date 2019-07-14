@@ -3,7 +3,7 @@
 		<div class="top-nav">
 			<button class="nav-item-horizontal" v-for="tab in tabs"> 
 		    <span class="nav-item-text">
-          <router-link :to="{ name: `${tab}`}">{{tab}}</router-link>
+          <router-link :to="{ name: `${tab}`}" class="text-alignment">{{tab}}</router-link>
 		    </span>
 		  </button>
 		</div>
@@ -22,7 +22,7 @@
       	class="nav-item"
       	:class="[sideNavOpen ? 'display' : '']"> 
 		    <span class="nav-item-text">
-		       <router-link :to="{ name: `${tab}`}">{{tab}}</router-link>
+		       <router-link :to="{ name: `${tab}`}" class="text-alignment">{{tab}}</router-link>
 		    </span>
 		  </button>
 	  </div>
@@ -104,6 +104,7 @@
   @include rounded;
   @include large-text;
   display: none;
+  border: 4px solid black;
 }
 
 .display {
@@ -112,9 +113,7 @@
 
 .nav-item-text {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-all-center;
   background-color: transparent;
   transition: 
    transform $transition-time ease-in-out, 
@@ -167,6 +166,11 @@ a {
   background-color: transparent;
 }
 
+.text-alignment {
+  line-height: 2;
+  display: inline-block;
+  vertical-align: middle;
+}
 @include large-to-mid-screens {
   .top-nav {
     display: flex; 
