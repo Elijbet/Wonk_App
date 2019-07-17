@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <br>
-    <NavBar class="margin">
+    <NavBar>
       <div id="app"></div>
     </NavBar>
     <div class="contents">
@@ -37,17 +37,17 @@ export default {
    cornflowerblue, 
    thistle
   );
-
+  padding: 20px 80px 80px 80px;
 }
-.contents {
-  @include flex-all-center;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding-right: 40px;
-  padding-left: 40px;
-}
-.margin {
-  margin: 20px 40px 0px 40px;
+@include large-to-mid-screens {
+  .contents {
+    width: 100%;
+    @include flex-all-center;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-right: 40px;
+    padding-left: 40px;
+  }
 }
 
 </style>

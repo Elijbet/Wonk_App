@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="top-nav">
+		<div class="top-nav margin">
 			<button class="nav-item-horizontal" v-for="tab in tabs"> 
 		    <span class="nav-item-text">
           <router-link :to="{ name: `${tab}`}" class="text-alignment">{{tab}}</router-link>
@@ -43,7 +43,6 @@
 <style lang="scss" scoped>
 
 .side-nav {
-  width: 80%;
   padding: 1rem;
   padding-top: 6rem;
   transform: translateX(-100%);
@@ -170,6 +169,9 @@ a {
   line-height: 2;
   display: inline-block;
   vertical-align: middle;
+}
+.margin {
+  margin: 20px 40px 0px 40px;
 }
 @include large-to-mid-screens {
   .top-nav {

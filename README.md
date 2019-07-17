@@ -50,8 +50,14 @@
 - set up router links
 - codepen on how to flip just one card through component
 - quartered page with masonry layout each
+- mobile page
+- intro: wikipedi excerpt on the author
 - events: ticketmaster API
 - podcasts section: listen notes API
+- news: news API
+- movies: OMDB API
+- possibly write a scraper for movies to pull out books adopted to movies; OMDB API is by title search only
+- move logic to store
 ___
 
 ## Project setup

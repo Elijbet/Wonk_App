@@ -48,7 +48,7 @@ export default {
 			let books = [];
 			try {
 	  		const searchResult = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchKeyword}`)
-	  		// console.log('searchResult', JSON.stringify(searchResult.data.items))
+	  		console.log('searchResult', JSON.stringify(searchResult.data.items))
 	  		this.books = searchResult.data.items
 	  	} catch (e) {
 	      console.log('e', e)
